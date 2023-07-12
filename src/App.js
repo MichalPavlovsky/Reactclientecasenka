@@ -3,6 +3,8 @@ import React from 'react';
 class App extends React.Component {
     constructor(props) {
       super(props)
+
+      this.input = React.createRef()
     
       this.state = {
          newWho: 'Marceline',
@@ -23,11 +25,15 @@ class App extends React.Component {
       }
     }
 
+    componentDidMount = () => {
+        console.log('nieco')
+    }
+
     listOfDudes= () => {
         return this.state.characters.map(dude =>
         (<li 
             key={dude.id} className='dude'>
-            <a className="ctrl">x</a>
+            <a className="ctrl" onClick={() => this.removeDude(dude)}>x</a>
             <article className=''>
             {dude.who}
             <span>{dude.wat}</span>
@@ -65,11 +71,17 @@ class App extends React.Component {
 
     }
 
+    removeDude = dude => {
+        this.setState(state => { 
+            return {
+                 characters: state.characters.filter(item => item !== dude) }})
+    }
+
 
 
     handleSubmit = event => {
         // event.preventDefault()
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && this.state.newWat && this.state.newWho) {
             this.setState(state => {
                 const newDude = {
                     id: Math.max(...state.characters.map(d => d.id)) + 1,
@@ -80,9 +92,21 @@ class App extends React.Component {
 
         // this.setState({ 
         //     characters: [...this.state.characters, newDude]
-            return { characters: [...state.characters, newDude] }})
+            return { 
+                characters: [...state.characters, newDude] 
+            }
+        })
+                this.resetForm()
 
     }}
+
+    resetForm = () => {
+        this.setState({
+            newWho:'',
+            newWat:''
+        })
+        this.input.current.focus()
+    }
     render() {
         
             
@@ -90,7 +114,10 @@ class App extends React.Component {
             <div>
                 <ul>{this.listOfDudes()}</ul>
                 <form className='add-new' onKeyPress={this.handleSubmit}>
-                <input type='text' 
+                <input 
+                    autoFocus
+                    type='text' 
+                        ref= {this.input}
                         value={this.state.newWho}
                         onChange={this.handleWho}/>
                 <input type='text'

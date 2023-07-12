@@ -1,13 +1,89 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dude {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center horizontally */
+  margin-bottom: 10px;
+}
+
+.ctrl {
+  margin-right: 10px;
+  color: #FF0000;
+  /* Red color for the "X" button */
+}
+
+.article {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  margin-right: 10px;
+}
+
+.preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: fit-content;
+  margin-bottom: 10px;
+  background-color: #F2F2F2;
+  /* Light gray background color for the preview */
+  color: #333;
+  /* Dark gray color for the preview text */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center horizontally */
+}
+
+.add-new input[type='text'] {
+  margin-right: 10px;
+}
+
+/* Custom colors for styling */
+.dude {
+  color: #3366FF;
+  /* Blue color for the dude content */
+}
+
+.article span {
+  color: #666;
+  /* Medium gray color for the wat content */
+}
+
+.article {
+  border: 1px solid #3366FF;
+  /* Blue border for the dude content */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.add-new input[type='text'],
+.add-new input[type='number'] {
+  border: 1px solid #666;
+  /* Medium gray border for the input fields */
+  padding: 5px;
+}
+
+.add-new input[type='text']::placeholder,
+.add-new input[type='number']::placeholder {
+  color: #999;
+  /* Light gray color for the input placeholders */
 }
