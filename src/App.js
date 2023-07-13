@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 class App extends React.Component {
     constructor(props) {
       super(props)
@@ -7,8 +9,8 @@ class App extends React.Component {
       this.input = React.createRef()
     
       this.state = {
-         newWho: 'Marceline',
-         newWat: 'something',
+         newWho: '',
+         newWat: '',
           characters: [{
               id: 1,
               who: 'Folm',
@@ -30,18 +32,17 @@ class App extends React.Component {
     }
 
     listOfDudes= () => {
-        return this.state.characters.map(dude =>
-        (<li 
-            key={dude.id} className='dude'>
+        return this.state.characters.map(dude => (
+        <CSSTransition key={dude.id} timeout={200} classNames="dude">
+        <li key={dude.id} className='dude'>
             <a className="ctrl" onClick={() => this.removeDude(dude)}>x</a>
-            <article className=''>
+            <article>
             {dude.who}
             <span>{dude.wat}</span>
             </article>
-
             <input className='ctrl' type='number' value={dude.cool} onChange={this.handleCool(dude)}/>
         
-        </li>))
+                </li></CSSTransition>))
     }
 
     handleWho = event => {
@@ -92,8 +93,10 @@ class App extends React.Component {
 
         // this.setState({ 
         //     characters: [...this.state.characters, newDude]
+
+                const updatedCharacters = [...state.characters, newDude];
             return { 
-                characters: [...state.characters, newDude] 
+                characters: updatedCharacters, 
             }
         })
                 this.resetForm()
@@ -107,12 +110,13 @@ class App extends React.Component {
         })
         this.input.current.focus()
     }
+
     render() {
         
             
         return (
             <div>
-                <ul>{this.listOfDudes()}</ul>
+                <TransitionGroup component="ul">{this.listOfDudes()}</TransitionGroup>
                 <form className='add-new' onKeyPress={this.handleSubmit}>
                 <input 
                     autoFocus

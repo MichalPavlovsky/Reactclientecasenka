@@ -87,3 +87,25 @@ ul {
   color: #999;
   /* Light gray color for the input placeholders */
 }
+.dude-enter-active,
+  .dude-exit-active{
+    transition: all 0.2s;
+  }
+
+.dude-enter { 
+  opacity: 0;
+  transform: scale(0.75);
+}
+
+.dude-enter-active{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dude-exit { 
+  opacity: 1;
+}
+
+.dude-exit-active{
+  opacity: 0;
+}
